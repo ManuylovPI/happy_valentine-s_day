@@ -4,11 +4,19 @@
   <meta charset="UTF-8">
   <title>Для моей валентинки ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body, html { width:100%; height:100%; overflow:hidden; }
-    .page {
+    *{margin:0;padding:0;box-sizing:border-box}
+    body,html{
+      width:100%;
+      height:100%;
+      font-family:'Montserrat',sans-serif;
+      background:#0f0f14;
+      overflow:hidden;
+      color:white;
+    }
+
+    .page{
       position:absolute;
       width:100%;
       height:100%;
@@ -17,126 +25,179 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      padding:20px;
+      padding:40px;
+      transition:0.6s ease;
     }
-    .hidden { display:none; }
 
-    #page1 {
-      background:linear-gradient(180deg,#ff9ecf,#ff6fa5);
+    .hidden{
+      opacity:0;
+      pointer-events:none;
+      transform:scale(1.05);
+    }
+
+    h1{
+      font-size:clamp(28px,5vw,56px);
+      font-weight:800;
+      background:linear-gradient(90deg,#ff4fa3,#ff89c8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:30px;
+    }
+
+    p{
+      opacity:0.8;
+      margin-bottom:25px;
+    }
+
+    button{
+      padding:14px 32px;
+      border-radius:40px;
+      border:none;
+      font-weight:600;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s ease;
+      backdrop-filter:blur(10px);
+    }
+
+    .primary{
+      background:linear-gradient(135deg,#ff4fa3,#ff2e82);
       color:white;
-      overflow:hidden;
+      box-shadow:0 10px 30px rgba(255,0,120,0.4);
     }
 
-    #hearts {
+    .primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 15px 40px rgba(255,0,120,0.6);
+    }
+
+    .glass{
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.2);
+      color:white;
+      position:absolute;
+    }
+
+    .bg-gradient{
+      position:absolute;
+      width:120%;
+      height:120%;
+      background:radial-gradient(circle at 30% 30%,#ff2e82 0%,transparent 40%),
+                 radial-gradient(circle at 70% 70%,#8f00ff 0%,transparent 40%);
+      filter:blur(100px);
+      z-index:-1;
+    }
+
+    #hearts{
       position:absolute;
       width:100%;
       height:100%;
-      top:0;
-      left:0;
+      overflow:hidden;
       pointer-events:none;
     }
 
-    .heart {
+    .heart{
       position:absolute;
-      color:white;
+      font-size:20px;
       animation:fall linear infinite;
     }
 
-    @keyframes fall {
-      0% { transform:translateY(-10vh); opacity:1; }
-      100% { transform:translateY(110vh); opacity:0; }
+    @keyframes fall{
+      0%{transform:translateY(-10vh) rotate(0deg);opacity:1}
+      100%{transform:translateY(110vh) rotate(360deg);opacity:0}
     }
 
-    h1 { font-size:2.2rem; margin-bottom:20px; }
-
-    button {
-      padding:12px 25px;
-      margin:10px;
-      border:none;
-      border-radius:30px;
-      font-size:16px;
-      cursor:pointer;
-      transition:0.3s;
-    }
-
-    .yes { background:#ff4f87; color:white; }
-    .no { background:white; color:#ff4f87; position:absolute; }
-
-    #page2 {
-      background:linear-gradient(180deg,#ffe0f0,#ffc2e2);
-    }
-
-    #page3 {
-      background:#fff0f6;
-      overflow:auto;
-    }
-
-    .memory-grid {
+    .game-board{
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      grid-template-columns:repeat(4,80px);
       gap:15px;
-      width:90%;
-      max-width:800px;
+      margin-top:30px;
     }
 
-    .memory-grid img {
-      width:100%;
-      border-radius:20px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .game-board {
-      display:grid;
-      grid-template-columns:repeat(4,70px);
-      gap:10px;
-      margin-top:20px;
-    }
-
-    .card {
-      width:70px;
-      height:70px;
+    .card{
+      width:80px;
+      height:80px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:28px;
-      background:#ff8fc1;
-      border-radius:15px;
+      font-size:32px;
+      border-radius:20px;
       cursor:pointer;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(15px);
+      border:1px solid rgba(255,255,255,0.15);
+      transition:0.3s ease;
     }
 
-    .card.flipped { background:white; }
+    .card:hover{
+      transform:scale(1.05);
+    }
+
+    .card.flipped{
+      background:white;
+      color:#ff2e82;
+    }
+
+    #page3{
+      overflow:auto;
+      padding-top:100px;
+    }
+
+    .memory-grid{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      margin-top:40px;
+    }
+
+    .memory-grid img{
+      width:100%;
+      border-radius:25px;
+      transition:0.4s ease;
+      box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .memory-grid img:hover{
+      transform:scale(1.05) rotate(1deg);
+    }
   </style>
 </head>
 <body>
 
+<div class="bg-gradient"></div>
+
 <div id="page1" class="page">
   <div id="hearts"></div>
   <h1>С днем святого валентина, кошечка.</h1>
-  <button class="yes" onclick="goToPage(2)">Дальше ❤️</button>
+  <p>Ты — мое самое красивое совпадение в жизни 💖</p>
+  <button class="primary" onclick="goToPage(2)">Начать</button>
 </div>
 
 <div id="page2" class="page hidden">
   <h1>Хотите стать моей валентинкой на целый год?</h1>
-  <div style="position:relative; width:300px; height:150px;">
-    <button class="yes" onclick="startGame()">Да 💖</button>
-    <button class="no" id="noBtn">Нет</button>
+  <div style="position:relative;width:300px;height:150px;">
+    <button class="primary" onclick="startGame()">Да 💕</button>
+    <button class="glass" id="noBtn">Нет</button>
   </div>
 </div>
 
 <div id="gamePage" class="page hidden">
-  <h1>Найди все пары 💕</h1>
+  <h1>Найди все пары 💘</h1>
+  <p>Если любовь настоящая — ты справишься 😉</p>
   <div class="game-board" id="gameBoard"></div>
 </div>
 
 <div id="page3" class="page hidden">
-  <h1>Наши самые милые моменты 💗</h1>
+  <h1>Наши самые теплые моменты 💞</h1>
   <div class="memory-grid">
-    <img src="photo1.jpg">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
-    <img src="photo5.jpg">
-    <img src="photo6.jpg">
+    <img src="images/photo1.jpg">
+    <img src="images/photo2.jpg">
+    <img src="images/photo3.jpg">
+    <img src="images/photo4.jpg">
+    <img src="images/photo5.jpg">
+    <img src="images/photo6.jpg">
   </div>
 </div>
 
